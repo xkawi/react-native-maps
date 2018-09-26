@@ -232,7 +232,11 @@ NSInteger const AIR_CALLOUT_OPEN_ZINDEX_BASELINE = 999;
     if (marker.onPress) marker.onPress(event);
     if (marker.map.onMarkerPress) marker.map.onMarkerPress(event);
     
-    [marker.map selectAnnotation:marker animated:NO];
+    // [marker.map selectAnnotation:marker animated:NO];
+    // Disable this touch-delegation. Opening the callout still works with
+    // the onPress callback. But with this selectAnnotation call sometimes
+    // multiple callouts was opened at the same time. More infos:
+    // https://github.com/react-community/react-native-maps/issues/1353
 }
 
 - (void)hideCalloutView
